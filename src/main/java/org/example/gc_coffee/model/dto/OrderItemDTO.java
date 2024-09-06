@@ -1,10 +1,13 @@
 package org.example.gc_coffee.model.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.example.gc_coffee.model.entity.OrderItemEntity;
 
 import java.time.LocalDateTime;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class OrderItemDTO extends BaseDTO {
     private long seq;
     private String orderId;
