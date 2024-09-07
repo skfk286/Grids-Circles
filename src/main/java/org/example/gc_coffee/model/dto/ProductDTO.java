@@ -21,6 +21,8 @@ public class ProductDTO extends BaseDTO {
         this.category = productEntity.getCategory();
         this.price = productEntity.getPrice();
         this.description = productEntity.getDescription();
+        super.setCreatedAt(productEntity.getCreatedAt());
+        super.setUpdatedAt(productEntity.getUpdatedAt());
     }
 
     public ProductEntity toProductEntity() {

@@ -22,6 +22,8 @@ public class OrderDTO extends BaseDTO {
         this.address = orderEntity.getAddress();
         this.postcode = orderEntity.getPostcode();
         this.orderStatus = orderEntity.getOrderStatus();
+        super.setCreatedAt(orderEntity.getCreatedAt());
+        super.setUpdatedAt(orderEntity.getUpdatedAt());
     }
 
     public OrderEntity toOrderEntity() {
