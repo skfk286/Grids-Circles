@@ -16,6 +16,14 @@ public class OrderDTO extends BaseDTO {
     private String postcode;
     private String orderStatus;
 
+    public OrderDTO(OrderEntity orderEntity) {
+        this.orderId = orderEntity.getOrderId();
+        this.email = orderEntity.getEmail();
+        this.address = orderEntity.getAddress();
+        this.postcode = orderEntity.getPostcode();
+        this.orderStatus = orderEntity.getOrderStatus();
+    }
+
     public OrderEntity toOrderEntity() {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setOrderId(orderId);
