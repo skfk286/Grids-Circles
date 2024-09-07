@@ -1,6 +1,7 @@
 package org.example.gc_coffee.controller;
 
 import org.example.gc_coffee.common.api.ApiResponse;
+import org.example.gc_coffee.common.util.LoggerUtil;
 import org.example.gc_coffee.model.dto.ProductDTO;
 import org.example.gc_coffee.model.entity.ProductEntity;
 import org.example.gc_coffee.model.service.ProductService;
@@ -21,8 +22,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
-
-    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+    private static final Logger logger = LoggerUtil.getLogger();
 
     @Autowired
     private ProductService productService;

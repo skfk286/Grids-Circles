@@ -2,9 +2,11 @@ package org.example.gc_coffee.model.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.example.gc_coffee.enums.OrderStatus;
 import org.example.gc_coffee.model.entity.OrderEntity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -14,7 +16,11 @@ public class OrderDTO extends BaseDTO {
     private String email;
     private String address;
     private String postcode;
-    private String orderStatus;
+    private OrderStatus orderStatus;
+
+    private List<ProductDTO> products;
+
+    public OrderDTO() {}
 
     public OrderDTO(OrderEntity orderEntity) {
         this.orderId = orderEntity.getOrderId();

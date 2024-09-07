@@ -2,6 +2,7 @@ package org.example.gc_coffee.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.gc_coffee.enums.OrderStatus;
 
 import java.util.UUID;
 
@@ -9,7 +10,6 @@ import java.util.UUID;
 @Table(name = "orders")
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderEntity extends BaseEntity {
@@ -28,6 +28,7 @@ public class OrderEntity extends BaseEntity {
     @Column(length = 200, nullable = false)
     private String postcode;
 
+    @Enumerated(EnumType.STRING)
     @Column(length = 50, nullable = false)
-    private String orderStatus;
+    private OrderStatus orderStatus;
 }

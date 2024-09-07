@@ -1,6 +1,7 @@
 package org.example.gc_coffee.config;
 
 import jakarta.annotation.PostConstruct;
+import org.example.gc_coffee.common.util.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,7 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 public class ApplicationConfig {
-
-    private static final Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
+    private static final Logger logger = LoggerUtil.getLogger();
 
     @Autowired
     private Environment env;

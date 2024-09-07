@@ -7,7 +7,6 @@ import lombok.*;
 @Table(name = "order_items")
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderItemEntity extends BaseEntity {
@@ -17,12 +16,12 @@ public class OrderItemEntity extends BaseEntity {
     private Long seq;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private OrderEntity order;
+    @JoinColumn(nullable = false)
+    private OrderEntity orderEntity;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private ProductEntity product;
+    @JoinColumn(nullable = false)
+    private ProductEntity productEntity;
 
     @Column(length = 50, nullable = false)
     private String category;

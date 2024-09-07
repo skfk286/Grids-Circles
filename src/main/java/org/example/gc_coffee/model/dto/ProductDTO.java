@@ -15,6 +15,10 @@ public class ProductDTO extends BaseDTO {
     private long price;
     private String description;
 
+    private int quantity; // 주문-수량
+
+    public ProductDTO() {}
+
     public ProductDTO(ProductEntity productEntity) {
         this.productId = productEntity.getProductId();
         this.productName = productEntity.getProductName();
