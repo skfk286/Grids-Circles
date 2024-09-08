@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.gc_coffee.enums.OrderStatus;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity

@@ -24,7 +24,7 @@ public class OrderService {
     @Autowired private OrderItemRepository orderItemRepository;
 
     // 주문하기
-    // @Transactional
+    @Transactional
     public void saveOrderAndProducts(OrderDTO orderDTO) {
         UUID orderUUID = UUIDUtil.generateUUIDv1();
         logger.info("order created UUID: {}", orderUUID);
@@ -33,14 +33,14 @@ public class OrderService {
         orderDTO.setOrderStatus(OrderStatus.PROCESSING); // 주문 - 처리상태 설정
 
         OrderEntity orderEntity = orderDTO.toOrderEntity();
-        orderRepository.save(orderEntity);
+        OrderEntity orderEntityResult = orderRepository.save(orderEntity);
 
         int orderProductSize = orderDTO.getProducts().size();
         for (int i = 0; i < orderProductSize; i++) {
             ProductDTO productDTO = orderDTO.getProducts().get(i);
             OrderItemEntity orderItemEntity = new OrderItemEntity();
 
-            orderItemEntity.setOrderEntity(orderEntity);
+            orderItemEntity.setOrderEntity(orderEntityResult);
             orderItemEntity.setProductEntity(productDTO.toProductEntity());
             orderItemEntity.setPrice(productDTO.getPrice()); // 가격 * 개수
             orderItemEntity.setQuantity(productDTO.getQuantity());

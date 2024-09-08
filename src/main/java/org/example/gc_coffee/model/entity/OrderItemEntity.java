@@ -16,11 +16,11 @@ public class OrderItemEntity extends BaseEntity {
     private Long seq;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "order_id", nullable = false)
     private OrderEntity orderEntity;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    @OneToOne
+    @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity productEntity;
 
     @Column(length = 50, nullable = false)
