@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -62,6 +59,39 @@ public class ProductController {
         logger.info("Product found: {}", productEntity.getProductName());
         ProductDTO productDTO = new ProductDTO(productEntity);
         return ResponseEntity.ok(new ApiResponse<>(true, "Product retrieved successfully", productDTO, HttpStatus.OK.value()));
+    }
+
+    // 상품 등록
+    @PostMapping
+    public ResponseEntity<?> createProduct(@RequestBody ProductDTO productDTO) {
+        logger.info("Request to create product: {}", productDTO);
+
+        List<ProductEntity> productEntityList = productService.createProduct(productDTO);
+
+        List<ProductDTO> productDTOList = productEntityList.stream()
+                .map(ProductDTO::new)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(new ApiResponse<>(true, "Product created successfully", productDTOList, HttpStatus.OK.value()));
+    }
+
+    // 상품 수정
+    @PutMapping
+    public ResponseEntity<?> updateProduct(@RequestBody ProductDTO productDTO) {
+        logger.info("Request to update product: {}", productDTO);
+
+        productService.modifyProduct(productDTO);
+
+        return ResponseEntity.ok(new ApiResponse<>(true, "Product updated successfully", null, HttpStatus.OK.value()));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteProduct(@RequestBody ProductDTO productDTO) {
+        logger.info("Request to delete product: {}", productDTO);
+
+        productService.deleteProduct(productDTO.getProductId());
+
+        return ResponseEntity.ok(new ApiResponse<>(true, "Product deleted successfully", null, HttpStatus.OK.value()));
     }
 
 }

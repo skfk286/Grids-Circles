@@ -1,6 +1,8 @@
 package org.example.gc_coffee.model.service;
 
 import org.example.gc_coffee.common.util.LoggerUtil;
+import org.example.gc_coffee.common.util.UUIDUtil;
+import org.example.gc_coffee.model.dto.ProductDTO;
 import org.example.gc_coffee.model.entity.ProductEntity;
 import org.example.gc_coffee.model.repository.ProductRepository;
 import org.slf4j.Logger;
@@ -27,7 +29,33 @@ public class ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
     }
 
-    // 상품 등록 하기 (관리자)
+    // 상품 등록 하기
+    public List<ProductEntity> createProduct(ProductDTO productDTO) {
+        ProductEntity productEntity = productDTO.toProductEntity();
 
-    // 상품 삭제 하기 (관리자)
+        UUID productId = UUIDUtil.generateUUIDv1();
+        productEntity.setProductId(productId);
+        productRepository.save(productEntity);
+
+        return findAllProducts();
+    }
+
+    // 상품 수정 하기
+    public void modifyProduct(ProductDTO productDTO) {
+        ProductEntity productEntity = findProductById(productDTO.getProductId());
+
+        productEntity.setProductName(productDTO.getProductName());
+        productEntity.setDescription(productDTO.getDescription());
+        productEntity.setPrice(productDTO.getPrice());
+        productEntity.setCategory(productDTO.getCategory());
+
+        productRepository.saveAndFlush(productEntity);
+    }
+
+    // 상품 삭제 하기
+    public void deleteProduct(UUID productId) {
+        ProductEntity productEntity = findProductById(productId);
+
+        productRepository.delete(productEntity);
+    }
 }

@@ -26,7 +26,6 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<?> order(@RequestBody OrderDTO orderDTO) {
-        /* TODO : 여가에서 값 검증이 필요하나 ? */
 
         orderService.saveOrderAndProducts(orderDTO);
 
