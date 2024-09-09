@@ -6,7 +6,6 @@ import org.example.gc_coffee.model.dto.ProductDTO;
 import org.example.gc_coffee.model.entity.ProductEntity;
 import org.example.gc_coffee.model.service.ProductService;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin
 public class ProductController {
     private static final Logger logger = LoggerUtil.getLogger();
 
