@@ -27,7 +27,7 @@ public class OrderService {
     @Transactional
     public void saveOrderAndProducts(OrderDTO orderDTO) {
         UUID orderUUID = UUIDUtil.generateUUIDv1();
-        logger.info("order created UUID: {}", orderUUID);
+        logger.info("order new UUID: {}", orderUUID);
 
         orderDTO.setOrderId(orderUUID); // 신규 주문 UUID 생성
         orderDTO.setOrderStatus(OrderStatus.PROCESSING); // 주문 - 처리상태 설정
